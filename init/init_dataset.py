@@ -22,6 +22,16 @@ datas = {
 }
 
 def init_dataset(name, cfg):
+    """initialize dataset   
+    Args:
+        name (string): name of the dataset
+        cfg (omegaconf.dictconfig.DictConfig): configuration
+    Returns:
+        dtrain (Dataset): the training dataset
+        dtest (Dataset): the test dataset
+        pde_cfg (tuple): the pde configuration as :
+        (PDE Physical losses, sizes (frame, params, forcings, ic, bc), channels (frame, params, forcings, ic, bc), PDE dim, PDE channels)
+    """
     try:
         dtrain = datas[name](cfg, cfg.ntrain, 'train')
         dtest = datas[name](cfg, cfg.ntest, 'test')

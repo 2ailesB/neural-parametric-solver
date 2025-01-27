@@ -18,6 +18,17 @@ models = {
 }
 
 def init_model(name, cfg, pde):
+    """initialize model
+
+    Args:
+        name (string): name of the model
+        cfg (omegaconf.dictconfig.DictConfig): configuration
+        pde (PDE): the PDE configuration as :
+        (PDE Physical losses, sizes (frame, params, forcings, ic, bc), channels (frame, params, forcings, ic, bc), PDE dim, PDE channels)
+    
+    Returns:
+        model (Model): the model
+    """
     try:
         return models[name](cfg, pde)
     except KeyError : 

@@ -3,6 +3,15 @@ from omegaconf import OmegaConf
 from pathlib import Path
 
 def init_logger(cfg):
+    """initialize logger
+    Args:
+        cfg (omegaconf.dictconfig.DictConfig): configuration
+    Returns:
+        logger (wandb): the logger
+        exp_name (string): the name of the experiment
+        save_path (string): the path to save the experiment
+    """
+    
     logger = wandb.init(
         project=cfg.exp.logger.project, dir=cfg.exp.save_path, entity=cfg.exp.logger.entity,
         tags=[cfg.solver.name, cfg.solver.model.name, cfg.data.name])
