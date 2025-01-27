@@ -1,0 +1,9 @@
+wandb
+torch>=2.0
+einops
+hydra-core
+wandb==0.14.0
+matplotlib
+numpy
+scipy
+pytorch-lightning
