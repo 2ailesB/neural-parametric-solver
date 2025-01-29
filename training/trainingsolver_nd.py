@@ -32,13 +32,9 @@ class trainingsolver_nd(Experiment):
         self.u = init_approx(self.cfg.approx.name, self.cfg.approx)
         self.u.to(self.device)
         self.N = self.u.get_theta_size()
-        # print("self.N : ", self.N)
-        # print("trainer self.u.Ns4tr : ", self.u.Ns4tr)
         self.theta0 = (0.1)**(1/2) * torch.randn(self.u.Ns4tr+(self.u.channels,)).detach() 
-        self.theta0[0, 0] = 0 # bias # TODO moche 
+        self.theta0[0, 0] = 0 # bias 
         self.theta0net = torch.nn.Linear(4, self.N).to(self.device)
-        # print("self.theta0 : ", self.theta0)
-        # exit()
         self.theta_init = self.cfg.theta_init
         self.theta_comp = self.cfg.theta_comp
         self.theta_noise = self.cfg.theta_noise
@@ -123,16 +119,9 @@ class trainingsolver_nd(Experiment):
             xa = (x, x_in, x_ic, x_bc) = to4list(x, self.device) #  B, X, T, D
                 
             utrue = utrue.to(self.device)
-            # print("utrue.shape : ", utrue.shape)
             bsize, frame_size, channels = utrue.shape[0], utrue.shape[1:-1], utrue.shape[-1]
-            # print("frame_size : ", frame_size)
 
             theta = self.get_theta0(bsize).to(self.device) # B, 2N+1, 1
-            # print("theta : ", theta)
-            # print("self.all_cfg : ", self.all_cfg)
-            # exit()
-            # print("theta.shape : ", theta.shape)
-            # theta = self.theta0net(params.squeeze(-1).float()).unsqueeze(-1)
             theta.requires_grad_(True)
 
             if not self.adaptative:
@@ -170,7 +159,7 @@ class trainingsolver_nd(Experiment):
                 thetac = theta
                 if self.cfg.approx.dim > 1:
                     x = einops.rearrange(x, 'B ... C -> B (...) C')
-                    thetac = einops.rearrange(theta, 'B ... -> B (...)').unsqueeze(-1)[:, 1:]
+                    thetac = einops.rearrange(theta, 'B ... -> B (...)').unsqueeze(-1)[:, 1:] # flatten theta for compute_u
                 uhat = self.u.compute_u(x, thetac)# B, X, C
                 losses_gd.append(loss_gd[0].cpu().item())
                 if self.dim==1:

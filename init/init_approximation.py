@@ -16,4 +16,5 @@ def init_approx(name, cfg):
     if cfg.channels==1:
        return init_ndbasis(name, cfg)
     else : 
+        raise NotImplementedError(f'{cfg.channels} channels basis not implemented')
         return MultiChannel(cfg)
