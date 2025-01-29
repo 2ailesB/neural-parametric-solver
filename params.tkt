@@ -1,0 +1,127 @@
+path2project: path to the current project: string 
+seed: fix seed for the training for reproductibility: int
+ckpt: if 0 start training from the begining, if string (model name), logs the config, models of the given run and continue training where it has stopped, overrides the next configs, except the number of epochs : 0 or string
+data:  
+    path2data: path to dataset
+    name: name of the dataset: 'helmholtz' 'poisson' 'helmholtz-hf' 'forcingmspoisson' 'advection' 'advections' '1dnlrd' '1dnlrdics' 'darcy' 'heat2d'
+    ntrain: number of samples for training: int
+    ntest: number of samples for evaluation: int
+    nomalization: normalization mode of the data: 0, '01', 'normal'
+    beta: (advection) beta of the datatset to use
+    sub_from_x: regular subsampling for the x-coordinate: int
+    sub_from_y: regular subsampling for the y-coordinate: int
+    sub_from_z: regular subsampling for the z-coordinate: int
+    sub_from_t: regular subsampling for the t-coordinate: int
+    sub_tr: irregular subsampling for the training set: float
+    sub_te: irregular subsampling for the testing set: float
+    diffgrids: wether grids are different for each trajectory: bool
+model:
+    name: type of model: 'iterative' 'preconditioner' 'preconditioner_cholesky' 'preconditioner_pinns' 'gd_nn', 'rk4_nn', 'adam_nn'
+    input_theta: wether to take the value of the weights theta as input to the nn: bool
+    input_gradtheta: wether to take the gradient of the weights theta: bool
+    input_params: number of parameters to input: int (number of params to input)
+    input_loss: wether to input the loss value: bool
+    input_x: input the x grid: bool
+    input_residual: wether to input the pde residual: bool
+    input_bcloss: input the boundary condition residual: bool
+    input_step: input the step number in the GD: bool
+    input_splitted_grad: input the bc and residual gradient separately: bool
+    input_splitted_losses: input the bc and residual losses separately: bool
+    input_forcings: input the forcings terms: bool
+    input_ic: input the initial condition: bool
+    input_bc: input the boundary condition: bool
+    input_theta_hist: 
+    input_gradtheta_hist:
+    input_signlog: input sign(gradtheta) et log(gratheta) concatenated
+    input_idx: input gd step
+    N: unused : is updated during training to match the one from exp.approx
+    regularized: (preconditioner_cholesky, preconditioner_pinns) regularization term for preconditionning matrices: float
+    nn:
+        name: type of layer: 'mlp' 'siren' 'resnet' 'pinnsmlp' 'mfn_fourier' 'mfn_garbor' 'id' 'conv1' 'conv2' 'conv1mlp' 'fno'
+        input_dim: (mlp, siren, resnet, modmlp, mfn_fourier, mfn_gabor) size of the input data (unused in most of the model, the input size is computed automatically from inputs parameters): int
+        output_dim: (mlp, siren, resnet, modmlp, mfn_fourier, mfn_gabor) output size of the nn (unused in most of the models, the output size is computed automatically from cfg): int
+        nlayers: (mlp, siren, resnet, modmlp, mfn_fourier, mfn_gabor) number of layer in the net: int
+        units: (mlp, siren, resnet, modmlp, mfn_fourier, mfn_gabor) number of neurons per hidden layers: int
+        activation: (conv1, conv1mlp, conv2, mlp, resnet, modmlp) activation function between layers: 'relu' 'tanh' 'sigmoid' 'gelu' 'swish' 'gaussian' 'quadratic' 'multiquadratic' 'laplacian' 'supergaussian' 'expsin'
+        omega_0: (siren) value of omega0 for SIRENs layers: float
+        weight_init_factor: (siren) weight initialization factor as precised in SIREN paper: float
+        in_channels: (conv1, conv1mlp, conv2) number of input channels: [ints]
+        out_channels: (conv1, conv1mlp, conv2) number of output channels: [ints]
+        kernels: (conv1, conv1mlp, conv2) kernel sizes: [ints] 
+        paddings: (conv1, conv1mlp) padding sizes: [ints]
+        strides: (conv1, conv1mlp) strides values: [ints]
+        dilatations: (conv1, conv1mlp) strides values: [ints]
+        frame_shape: (conv2) (ints)
+        layers: layer size of the fno: [ints]
+        modes1: number of mode per fno dim 1: [ints]
+        modes2: number of mode per fno dim 2: [ints]
+        modes3: number of mode per fno dim 2: [ints]
+        fc_dim: fc_dim of fno layers: int
+        pad_ratio: padding ratio for fno layers: [floats]
+exp
+    name: type of training procedure: 'conditioner' 'iterative' 'model_driven' 'nd
+    adaptative: (preconditioner, preconditioner_cholesky, preconditioner_pinns, gd_nn) wether the preconditioner is computed once for the GD or at each GD step: bool
+    L: number of GD steps: int
+    schedule_L: if >= 1, schedule the L value to increase it by 1 every schedule_L epoch, 0 for no scheduling and 'random' for random sampling of L between 1 and L: int
+    lbd: trade-off parameter between pde residual and bc residual in pinns losses: float
+    theta_init: initalization mode for parameters to be optimized: 'fixed_random' 'fixed_ones' 'fixed_zeros' 'random'
+    theta_noise: 
+    theta_comp: computation mode of gradients: 'default' 'true' 'no_graph' 'clipped' 'normalized'
+    approx (preconditioner, preconditioner_cholesky, preconditioner_pinns, gd_nn)
+        dim: dimension of the problem: int
+        channels: number of channels of the problem: int
+        order: order of "crossing" of coordinates for Nd basis: int
+        name: name of the basis to use to reconstruct the solution: 'fourier' 'fourier_adapt' 'chebyshev' 'legendre' 'hermite' 'hnet' 'polynomial' 'bsplines'
+        ff: (fourier, fourier_adapt) fundamental frequence of the basis: float
+        N: number of elements in the basis: int
+        root: (polynomials) optimize the roots of polynomials with GD: bool 
+        degree: (bsplines) degree of bsplines: int
+        knots_type: (bsplines) type of computation of the nodes: 'equispaced' 'shifted'
+        add_bias: add bias in the basis: bool
+        nl: wether to use non linear basis: bool
+        units: number of units for basis involving nn
+        nlayers: number of layers for basis involving nn
+        activation: activation funciton for basis involving nn
+        input_dim: input dim for basis involving nn
+        output_dim: output_dim for basis involving nn
+        layers:
+        autograd: wether to compute gradients with autograd or not (required depending on the basis choice)
+    inner_optimizer (preconditioner, preconditioner_cholesky, preconditioner_pinns, gd_nn)
+        name: optimizer name: 'GD', 'Adam', 'Adabelief', 'NoOpt', 'RK4'
+        lr: optimizer learning rate: float
+        conditioned (preconditioner, preconditioner_cholesky, preconditioner_pinns) wether the GD seps has a conditioning matrix: bool
+        epsilon (Adam, Adabelief): float
+        beta1 (Adam, Adabelief): momentum 1: float
+        beta2 (Adam, Adabelief): momentum 2: float
+        scheduler: schedule the inner lr
+    batch_size: batch size during training: int
+    shuffle: wether to shuffle dataset: bool
+    nepoch: number of epoch for training: int
+    opt: optimizer name: 'sgd' 'adam'
+    lr: learning rate for optimization of nns: float
+    lr_2: learning rate for optimization of nns with 2nd optimizer: float
+    lr_3: learning rate for optimization of nns with 3rd optimizer: float
+    switch_epoch: when to change optimizer
+    switch_epoch_2: when to change optimizer for the second time
+    precond_upd_freq:
+    optingd: whereas make optimization step for NN at each GD step during training: bool
+    optsum: whereas to optimize on the sum of the reconstruction loss at each inner steps instead of only the last one
+    scheduler: 
+        name: learning rate scheduler type: 'steplr' 'plateau', 'exp', 'cosine'
+        patience: (plateau) steps before decreasing lr
+    criterion: 
+        name: criterion name for optimization of nn: 'mse' 'bce' 'l1'
+        beta: beta value for 'l1' loss (SmoothL1 Loss in torch): float
+        add_physics: (conditioner) trade-off between data loss and physical loss: float 
+    save_path: checkpoint save path for wandb logs and models checkpoints: string
+    eval_freq: evaluate model in test mode every eval_freq epochs: int
+    wandb: wether to logs metrics to wandb: bool
+    logger: 
+        project: wandb project name: string
+        entity: wandb entity name: string
+        save_path: path where to save logs (and nn weights): string
+    watch_grad: wether to watch nn gradients with wandb (requires wandb=1): bool
+    verbose_freq: logs specific metrics every verbose_freq epoch: int
+    save_every: save network weight every ** steps (int)
+    nvisu: number of samples to visualize: int
+    tags: wandb tags for logger management: [string]
