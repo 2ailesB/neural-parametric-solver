@@ -28,8 +28,8 @@ def init_layers(name, cfg):
             layers = [cfg.units]*(cfg.nlayers + 1)
             cfg.layers = layers
         return ResNet(cfg.input_dim, cfg.output_dim, layers, activation=cfg.activation)
-    elif name == 'modmlp':
-        return ModMLPs(cfg.input_dim, cfg.output_dim, layers, cfg.activation)
+    # elif name == 'modmlp':
+    #     return ModMLPs(cfg.input_dim, cfg.output_dim, layers, cfg.activation)
     elif name == 'mfn_fourier':
         return FourierNet(cfg.input_dim, cfg.units, cfg.output_dim, cfg.nlayers)
     elif name == 'id':
