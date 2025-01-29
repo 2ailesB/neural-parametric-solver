@@ -3,6 +3,10 @@ import torch
 from components.approximation.FunctionBasis import FunctionBasis
 
 class Polynomials (FunctionBasis):
+    """ Polynomial basis class 
+    If root is activate : (x - roots) ** idxs, idxs gors from 0 to N-1
+    else : x ** idxs
+    """
     def __init__(self, cfg) -> None:
         super().__init__(cfg)
         self.N = cfg.N
