@@ -8,7 +8,7 @@ pip install -e .
 ```
 
 ## ...Progression...
-This git will be progressively updated in the following weeks with all experiments and cfg used.
+This git will be progressively updated in the upcoming weeks with all experiments and cfg used.
 Currently in progress. 
 Some of the provided code has not yet been checked.
 
@@ -16,12 +16,12 @@ Some of the provided code has not yet been checked.
 The main file to train a neural solver is `main.py`. 
 To train a model, 3 python objects are required: a Dataset (folder Dataset), a Model (folder models) and a Training (folder training). 
 Each of them is instanciated with the desired config with the coresponding `init_****` functions that are available in the `init` folder. 
-The default config file is `config/base.yaml`. It **purposefully** **doesn't take any input** in the network. This has to be manually added by setting the desired `input_***` parameters to True (1). See example below:
-To make a training with specific new configs, you can add them in the command. For example, to use another dataset and specify the learning rate, use : 
+The default config file is `config/base.yaml`. It **purposefully** **doesn't take any input** in the network. This has to be manually added by setting the desired `input_***` parameters to True (1). See example below. 
+To train a neural solver with specific new configs, you can add them in the command. For example, to use another dataset and specify the learning rate, use : 
 ```
 python3 main.py dataset=helmholtz exp.lr=0.01 model.input_bc=1 model.input_gradtheta=1
 ```
-The available config are resumed in the `params.txt` file. 
+The available config are summarized in the `params.txt` file. 
 
 
 ## How to reproduce the results of the paper? 
