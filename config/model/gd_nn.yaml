@@ -1,0 +1,44 @@
+name: gd_nn
+input_theta: 0
+input_gradtheta: 0
+input_params: 0
+input_loss: 0
+input_x: 0
+input_residual: 0
+input_bcloss: 0
+input_step: 0
+input_splitted_grad: 0
+input_splitted_losses: 0
+input_forcings: 0
+input_ic: 0
+input_bc: 0
+input_theta_hist: 0
+input_gradtheta_hist: 0
+input_signlog: 0
+input_idx: 0
+N: 5
+L: 5
+regularized: 0
+nn:
+  name: fno
+  dim: 0
+  input_dim: 
+  output_dim: 
+  nlayers: 5
+  units: 64
+  activation: gelu 
+  omega_0: 30
+  weight_init_factor: 0.01
+  in_channels: 2
+  out_channels: 2
+  kernels: 2
+  paddings: 2
+  strides: 2
+  dilatations: 2
+  frame_shape: 2
+  layers: [64, 64, 64]
+  modes1: [16, 16, 16]
+  modes2: [16, 16, 16]
+  modes3: [16, 16, 16]
+  fc_dim: 64
+  pad_ratio: [0., 0.]

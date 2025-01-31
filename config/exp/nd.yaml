@@ -1,0 +1,72 @@
+defaults:
+  - _self_
+  - approx: bsplines
+  - inner_optimizer: gd
+  - logger: wandb
+
+name: nd
+adaptative: 1
+L: 5
+schedule_L: 0
+lbd: 1
+theta_init: fixed_random
+theta_noise: 0
+theta_comp: normalized
+approx:
+  dim: 1
+  channels: 1
+  order: 2
+  name: bsplines
+  ff: 1
+  N: 32
+  roots: 0
+  degree: 3
+  knots_type: shifted
+  add_bias: false
+  nl: 0
+  units: 64
+  nlayers: 3
+  activation: gelu
+  input_dim: 1
+  output_dim: 1
+  layers:
+  autograd: 1
+inner_optimizer:
+  name: GD
+  lr: 1
+  conditioned: 0
+  epsilon: 1e-8
+  beta1: 0.9
+  beta2: 0.999
+  scheduler: 0
+batch_size: 50
+shuffle: 1
+nepoch: 1500
+opt: adam
+lr: 0.001
+lr_2: 1.
+lr_3: 1.
+switch_epoch: 1000
+switch_epoch_2: 1
+precond_upd_freq:
+optingd: 0
+optsum: 0
+scheduler: 
+  name: exp
+  patience: 10
+criterion:
+  name: l1
+  beta: 1
+  add_physics: 0
+save_path:
+eval_freq: 200
+wandb: 0
+logger: 
+  project: neural-solver
+  entity: 2ailesb
+  save_path: /home/lise.leboudec/project/neural-solver/logs
+watch_grad: 0 
+verbose_freq: 200
+save_every: 0
+nvisu: 1
+tags: ['']

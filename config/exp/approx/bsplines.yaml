@@ -1,0 +1,18 @@
+dim: 1
+channels: 1
+order: 2
+name: bsplines
+ff: 1
+N: 32
+roots: 0
+degree: 3
+knots_type: shifted
+add_bias: false
+nl: 0
+units: 64
+nlayers: 3
+activation: gelu
+input_dim: 1
+output_dim: 1
+layers:
+autograd: 1

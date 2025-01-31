@@ -14,7 +14,6 @@ data:
     sub_from_t: regular subsampling for the t-coordinate: int
     sub_tr: irregular subsampling for the training set: float
     sub_te: irregular subsampling for the testing set: float
-    diffgrids: wether grids are different for each trajectory: bool
 model:
     name: type of model: 'iterative' 'preconditioner' 'preconditioner_cholesky' 'preconditioner_pinns' 'gd_nn', 'rk4_nn', 'adam_nn'
     input_theta: wether to take the value of the weights theta as input to the nn: bool
@@ -59,7 +58,7 @@ model:
         fc_dim: fc_dim of fno layers: int
         pad_ratio: padding ratio for fno layers: [floats]
 exp
-    name: type of training procedure: 'conditioner' 'iterative' 'model_driven' 'nd
+    name: type of training procedure: 'conditioner' 'iterative' 'model_driven' 'nd'
     adaptative: (preconditioner, preconditioner_cholesky, preconditioner_pinns, gd_nn) wether the preconditioner is computed once for the GD or at each GD step: bool
     L: number of GD steps: int
     schedule_L: if >= 1, schedule the L value to increase it by 1 every schedule_L epoch, 0 for no scheduling and 'random' for random sampling of L between 1 and L: int

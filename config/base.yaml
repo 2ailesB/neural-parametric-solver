@@ -1,0 +1,134 @@
+defaults:
+  - _self_
+  - data: helmholtz-hf
+  - model: gd_nn
+  - exp: nd
+  
+path2project: /home/lise.leboudec/project/neural-solver/
+seed: 1998
+ckpt: 0
+data:
+  path2data: /data/lise.leboudec/datasets/Custom/output_datasets
+  name: helmholtz
+  ntrain: 800
+  ntest: 200
+  normalization: 0
+  beta: 0.1
+  sub_from_x: 1
+  sub_from_y: 1
+  sub_from_z: 1
+  sub_from_t: 1
+  sub_tr: 0
+  sub_te: 0
+model:
+  name: gd_nn
+  input_theta: 0
+  input_gradtheta: 0
+  input_params: 0
+  input_loss: 0
+  input_x: 0
+  input_residual: 0
+  input_bcloss: 0
+  input_step: 0
+  input_splitted_grad: 0
+  input_splitted_losses: 0
+  input_forcings: 0
+  input_ic: 0
+  input_bc: 0
+  input_theta_hist: 0
+  input_gradtheta_hist: 0
+  input_signlog: 0
+  input_idx: 0
+  N: 5
+  L: 5
+  regularized: 0
+  nn:
+    name: fno
+    dim: 0
+    input_dim: 
+    output_dim: 
+    nlayers: 5
+    units: 64
+    activation: gelu 
+    omega_0: 30
+    weight_init_factor: 0.01
+    in_channels: 2
+    out_channels: 2
+    kernels: 2
+    paddings: 2
+    strides: 2
+    dilatations: 2
+    frame_shape: 2
+    layers: [64, 64, 64]
+    modes1: [16, 16, 16]
+    modes2: [16, 16, 16]
+    modes3: [16, 16, 16]
+    fc_dim: 64
+    pad_ratio: [0., 0.]
+exp:
+  name: nd
+  adaptative: 1
+  L: 5
+  schedule_L: 0
+  lbd: 1
+  theta_init: fixed_random
+  theta_noise: 0
+  theta_comp: normalized
+  approx:
+    dim: 1
+    channels: 1
+    order: 2
+    name: bsplines
+    ff: 1
+    N: 32
+    roots: 0
+    degree: 3
+    knots_type: shifted
+    add_bias: false
+    nl: 0
+    units: 64
+    nlayers: 3
+    activation: gelu
+    input_dim: 1
+    output_dim: 1
+    layers:
+    autograd: 1
+  inner_optimizer:
+    name: GD
+    lr: 1
+    conditioned: 0
+    epsilon: 1e-8
+    beta1: 0.9
+    beta2: 0.999
+    scheduler: 0
+  batch_size: 50
+  shuffle: 1
+  nepoch: 1500
+  opt: adam
+  lr: 0.001
+  lr_2: 1.
+  lr_3: 1.
+  switch_epoch: 1000
+  switch_epoch_2: 1
+  precond_upd_freq:
+  optingd: 0
+  optsum: 0
+  scheduler: 
+    name: exp
+    patience: 10
+  criterion:
+    name: l1
+    beta: 1
+    add_physics: 0
+  save_path:
+  eval_freq: 200
+  wandb: 0
+  logger: 
+    project: neural-solver
+    entity: 2ailesb
+    save_path: /home/lise.leboudec/project/neural-solver/logs
+  watch_grad: 0 
+  verbose_freq: 200
+  save_every: 0
+  nvisu: 1
+  tags: ['']
