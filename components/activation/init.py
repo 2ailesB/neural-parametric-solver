@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 
 from components.activation.BeyondPeriodicity import GaussianActivation, QuadraticActivation, MultiQuadraticActivation, LaplacianActivation, SuperGaussianActivation, ExpSinActivation
 from components.activation.PINNsformer import SinCosActivation

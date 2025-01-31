@@ -1,6 +1,6 @@
 import torch.nn as nn
-from .basics import SpectralConv3d
-from .utils import add_padding, remove_padding, _get_act
+from components.base_layer.fno_basics import SpectralConv3d
+from components.base_layer.fno_basics import add_padding, remove_padding, _get_act
 
 """ Fourier Layers in 3D: taken from https://github.com/neuraloperator/physics_informed """
 

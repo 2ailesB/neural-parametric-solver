@@ -43,8 +43,8 @@ class Basis1d(FunctionBasis):
         bsize, sres, dim = x.shape
         _, tsize, channels = theta.shape
 
-        if self.cfg.name=='hnet' or self.cfg.autograd=False:
-            return self.base.compute_u(x, theta)
+        if self.cfg.name=='hnet' or self.cfg.autograd==False:
+            return self.base.compute_u(x[:, :, 0], theta)
 
         basis = []
         # compute bases
@@ -63,8 +63,8 @@ class Basis1d(FunctionBasis):
         bsize, sres, dim = x.shape
         _, tsize, channels = theta.shape
 
-        if self.cfg.name=='hnet' or self.cfg.autograd=False:
-            return self.base.compute_uderivativex(x, theta)
+        if self.cfg.name=='hnet' or self.cfg.autograd==False:
+            return self.base.compute_uderivativex(x[:, :, 0], theta)
 
         if not requires_grad_after:
             x = x.detach().clone()
@@ -80,8 +80,8 @@ class Basis1d(FunctionBasis):
         bsize, sres, dim = x.shape
         _, tsize, channels = theta.shape
 
-        if self.cfg.name=='hnet' or self.cfg.autograd=False:
-            return self.base.compute_uderivativex2(x, theta)
+        if self.cfg.name=='hnet' or self.cfg.autograd==False:
+            return self.base.compute_uderivativex2(x[:, :, 0], theta)
 
         if not requires_grad_after:
             x = x.detach().clone()

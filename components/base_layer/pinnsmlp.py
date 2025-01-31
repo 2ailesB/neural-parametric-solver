@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from componnents.activation.init import init_activation
+from components.activation.init import init_activation
 
 """ Implementation of the modified MLP Layer from 
 UNDERSTANDING AND MITIGATING GRADIENT PATHOLOGIES IN PHYSICS-INFORMED NEURAL NETWORKS

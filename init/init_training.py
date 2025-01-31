@@ -13,7 +13,7 @@ def init_training(type, cfg, loss):
     Returns:
         trainer(Training): the trainer for the expe
     """
-    elif type == 'conditioner':
+    if type == 'conditioner':
         return trainingsolver_gd(cfg, loss)
     elif type=='history':
         return trainingsolver_hist(cfg, loss)
