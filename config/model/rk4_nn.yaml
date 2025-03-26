@@ -1,0 +1,11 @@
+solver:
+  name: simple-solver
+  K: 10
+  mean: 0
+  std: 1
+  model:
+    name: mlp
+    input_dim: 4096
+    output_dim: 4096
+    nlayers: 5
+    activation: relu 

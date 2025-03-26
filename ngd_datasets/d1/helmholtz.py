@@ -31,7 +31,7 @@ class Helmholtz(PDE):
             ds = np.load(f'{cfg.path2data}/helmholtz_N1024_x256_omegas{omegamin}_{omegamax}ubsgbsT_test_unif.npz')        
         else:
             raise ValueError(f'Unknown mode {mode}.')
-
+        
         self.labels = torch.from_numpy(ds['u'][0:ntraj, ::self.cfg.sub_from_x, ...]).unsqueeze(-1)
         self.spatialres = self.labels.shape[1]
         self.datas = torch.from_numpy(ds['params'][0:ntraj, ...]).unsqueeze(-1)

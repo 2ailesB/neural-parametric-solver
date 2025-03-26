@@ -1,0 +1,14 @@
+name: preconditioner
+input_theta: 1
+input_gradtheta: 1
+input_params: 3
+input_loss: 0
+N: 5
+regularized: 0
+nn:
+  name: mlp
+  input_dim: 21
+  output_dim: 441
+  nlayers: 2
+  units: 21
+  activation: gelu 

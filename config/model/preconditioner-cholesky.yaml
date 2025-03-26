@@ -1,0 +1,5 @@
+name: mlp
+  input_dim: 
+  output_dim: 
+  nlayers: 5
+  activation: relu 

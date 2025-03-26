@@ -64,7 +64,7 @@ wandb: 0
 logger: 
   project: neural-solver
   entity: 2ailesb
-  save_path: /home/lise.leboudec/project/neural-solver/logs
+  save_path: /home/lise.leboudec/project/neural-parametric-solver/logs
 watch_grad: 0 
 verbose_freq: 200
 save_every: 0

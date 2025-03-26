@@ -37,8 +37,8 @@ nn:
   dilatations: 2
   frame_shape: 2
   layers: [64, 64, 64]
-  modes1: [16, 16, 16]
-  modes2: [16, 16, 16]
-  modes3: [16, 16, 16]
+  modes1: [16, 16, 16, 16]
+  modes2: [16, 16, 16, 16]
+  modes3: [16, 16, 16, 16]
   fc_dim: 64
   pad_ratio: [0., 0.]
