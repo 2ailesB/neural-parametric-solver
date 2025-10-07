@@ -5,14 +5,6 @@ Code for "Learning a neural solver for Parametric PDE to Enhance Physics-Informe
 📑 [ArXiv](https://arxiv.org/abs/2410.06820)  
 🤗 [Hugging Face](https://huggingface.co/datasets/2ailesB/neural-parametric-solver-datasets)  
 
-$$
-\begin{aligned}
-a + b &= c \\
-d &= e
-\end{aligned}
-$$
-
-
 ## ...Progression...
 This git will be progressively updated in the upcoming weeks with all experiments and cfg used.
 Currently in progress. 
@@ -79,43 +71,53 @@ We succintly detail the avalaible dataset in the paper. Datasets are provided on
 - `forcingmspoisson`: solve the 1d Poisson equation with forcing term : $\frac{\partial^2 u (x)}{\partial x^2} = f(x), u(0) = u_0, \frac{\partial u(0)}{\partial x} = v_0$, with $u_0\sim \mathcal{N}(0, 1)$, $v_0 \sim \mathcal{N}(0, 1)$ and $f(x) = \frac{\pi}{K}\sum_{i=1}^{K}\alpha_i i^{2r}\sin(i\pi x), a_i \sim \mathcal{U}(-100, 100), K=16, r=-0.5$.
 
 - `1dnlrd`: solves a non-linear Reaction-Diffusion PDE. 
+
 $$
 \begin{aligned}
     \frac{\partial u(t, x)}{\partial t} - \nu \frac{\partial^2u(t, x)}{\partial x^2} - \rho u(t, x)(1-u(t, x)) &= 0, \\
-    u(0, x) = e^{-32(x-1/2)^2}.
+    u(0, x) &= e^{-32(x-1/2)^2}.
 \end{aligned}
 $$
+
 We generate $800$ trajectories by varying $\nu$ in $[1, 5]$ and $\rho$ in $[-5, 5]$.
 
 - `1dnlrdics`: solves a non-linear Reaction-Diffusion PDE (see above), but the initial condition also varies as:
+
 $$
 \begin{equation}
     u(x, 0) = \sum_{i=1}^3 a_i e^{-\frac{\left( \frac{x-h/4}{h}\right)^2}{4}}.
 \end{equation}
 $$
+
 Where $a_i$ are randomly chosen in $[0, 1]$ and $h=1$ is the spatial resolution. 
 
 - `advection`: Take one dataset with fixed advection parameter from PDEBench [1]. We refer to PDEBench for more deatils. The PDE expresses as: 
+
 $$
-\begin{align}
+\begin{aligned}
     \frac{\partial u(t, x)}{\partial t} + \beta \frac{\partial u(t, x)}{\partial x} &= 0, \hspace{3mm} x\in (0, 1), t\in (0, 2], \\
     u(0, x) &= u_0(x), \hspace{3mm} x\in (0, 1).
-\end{align}
+\end{aligned}
 $$
 
 - `advections`: Adapted from PDEBench [1]: mix trajectories with several PDE parameters ($\beta$ varying between $0.2$ and $4$). 
 
 - `darcy`: The Darcy dataset is talen from [2]. As for the `advection` dataset, we refer to the FNO paper for more details on the dataset. The PDE expresses as: 
-$$\begin{align}
+
+$$
+\begin{aligned}
     -\nabla.(a(x)\nabla u(x)) &= f(x) \hspace{3mm} x \in (0, 1)^2,\\
     u(x) &= 0 \hspace{3mm} x \in \partial(0, 1)^2.
-\end{align}$$
+\end{aligned}
+$$
 
 - `heat2d`: This dataset is inspired from [3]. The PDE expresses as: 
-$$\begin{align}
+$$
+\begin{aligned}
     \frac{\partial u (x, y, t)}{\partial t} - \nu \nabla^2 u(x, y, t) &= 0,\\
     u(x, y, 0) &= \sum_{j=1}^J A_j\sin(\frac{2\pi l_{xj}x}{L} + \frac{2\pi l_{yj}y}{L} + \phi_i).
-\end{align}$$
+\end{aligned}
+$$
 
 
 ## Models
