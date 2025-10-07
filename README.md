@@ -67,7 +67,7 @@ Train several model by setting exp.input_** to 0/1 if the model has to consider 
 `model.input_gradtheta=1 model.input_bc=1 model.input_params=1`
 
 #### Non linear basis (table 11)
-
+Train your model using cfg.nl=1 to use a non linear basis. 
 
 #### NN layer (table 12) 
 Train several models by changing the model.nn.name configuration to mlp, resnet, fno or modmlp. 
