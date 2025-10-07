@@ -72,7 +72,7 @@ The available config are summarized in the `params.txt` file.
 - `darcy`: 
 - `heat2d`: 
 
-Datasets are provided in the `ngd_dataset/files` folder. 
+Datasets are provided on [Hugging Face](https://huggingface.co/datasets/2ailesB/neural-parametric-solver-datasets).
 
 
 ## Models
