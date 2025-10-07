@@ -72,10 +72,10 @@ We succintly detail the avalaible dataset in the paper. Datasets are provided on
 - `forcingmspoisson`: solve the 1d Poisson equation with forcing term : $\frac{\partial^2 u (x)}{\partial x^2} = f(x), u(0) = u_0, \frac{\partial u(0)}{\partial x} = v_0$, with $u_0\sim \mathcal{N}(0, 1)$, $v_0 \sim \mathcal{N}(0, 1)$ and $f(x) = \frac{\pi}{K}\sum_{i=1}^{K}\alpha_i i^{2r}\sin(i\pi x), a_i \sim \mathcal{U}(-100, 100), K=16, r=-0.5$.
 
 - `1dnlrd`: solves a non-linear Reaction-Diffusion PDE. 
-\begin{align}
+$$\begin{aligned}
     \frac{\partial u(t, x)}{\partial t} - \nu \frac{\partial^2u(t, x)}{\partial x^2} - \rho u(t, x)(1-u(t, x)) &= 0, \\
     u(0, x) = e^{-32(x-1/2)^2}.
-\end{align}
+\end{aligned}$$
 We generate $800$ trajectories by varying $\nu$ in $[1, 5]$ and $\rho$ in $[-5, 5]$.
 
 - `1dnlrdics`: solves a non-linear Reaction-Diffusion PDE (see above), but the initial condition also varies as:
