@@ -46,7 +46,7 @@ Then, simply log your trained model, take a new equation sample (eg from a test 
 
 ### Ablations
 #### Number of steps L (figure 11)
-Run $3$ training by setting exp.L=$1, 3, 5$ and then evaluate the trained models on the test set. You might need to change the inner lr and batch size according to the GPU memory consumption (more steps involve bigger memory requirements). 
+Run $3$ training by setting exp.L= $1, 3, 5$ and then evaluate the trained models on the test set. You might need to change the inner lr and batch size according to the GPU memory consumption (more steps involve bigger memory requirements). 
 
 #### Training with differents dataset size (figure 12)
 Train several model by changing data.ntrain in $32, 64, 128, 256, 512, 1024$ and plot the MSE on the test set for each model. 
