@@ -1,9 +1,9 @@
 # Learning a neural solver for Parametric PDE to Enhance Physics-Informed Methods
 Code for "Learning a neural solver for Parametric PDE to Enhance Physics-Informed Methods", poster at ICLR 2025. 
 
-📋 [ICLR 2025](https://iclr.cc/virtual/2025/poster/28615)
-📑 [ArXiv](https://arxiv.org/abs/2410.06820)
-🤗 [Hugging Face](https://huggingface.co/datasets/2ailesB/neural-parametric-solver-datasets)
+📋 [ICLR 2025](https://iclr.cc/virtual/2025/poster/28615)  
+📑 [ArXiv](https://arxiv.org/abs/2410.06820)  
+🤗 [Hugging Face](https://huggingface.co/datasets/2ailesB/neural-parametric-solver-datasets)  
 
 ## Setup
 ```
