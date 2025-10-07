@@ -112,6 +112,7 @@ $$
 $$
 
 - `heat2d`: This dataset is inspired from [3]. The PDE expresses as: 
+
 $$
 \begin{aligned}
     \frac{\partial u (x, y, t)}{\partial t} - \nu \nabla^2 u(x, y, t) &= 0,\\
