@@ -5,20 +5,21 @@ Code for "Learning a neural solver for Parametric PDE to Enhance Physics-Informe
 📑 [ArXiv](https://arxiv.org/abs/2410.06820)  
 🤗 [Hugging Face](https://huggingface.co/datasets/2ailesB/neural-parametric-solver-datasets)  
 
+
+## ...Progression...
+This git will be progressively updated in the upcoming weeks with all experiments and cfg used.
+Currently in progress. 
+
+
 ## Setup
 ```
 conda create -n neural-parametric-solver python=3.10.11
 pip install -e .
 ```
 
-## ...Progression...
-This git will be progressively updated in the upcoming weeks with all experiments and cfg used.
-Currently in progress. 
-Some of the provided code has not yet been checked.
-
 ## Code overview
 The main file to train a neural solver is `main.py`. 
-To train a model, 3 python objects are required: a Dataset (folder Dataset), a Model (folder models) and a Training (folder training). 
+To train a model, 3 python objects are required: a Dataset (folder Dataset), a Model (folder models) and a Trainer (folder training). 
 Each of them is instanciated with the desired config with the coresponding `init_****` functions that are available in the `init` folder. 
 The default config file is `config/base.yaml`. It **purposefully** **doesn't take any input** in the network. This has to be manually added by setting the desired `input_***` parameters to True (1). See example below. 
 To train a neural solver with specific new configs, you can add them in the command. For example, to use another dataset and specify the learning rate, use : 
@@ -71,10 +72,10 @@ We succintly detail the avalaible dataset in the paper. Datasets are provided on
 - `forcingmspoisson`: solve the 1d Poisson equation with forcing term : $\frac{\partial^2 u (x)}{\partial x^2} = f(x), u(0) = u_0, \frac{\partial u(0)}{\partial x} = v_0$, with $u_0\sim \mathcal{N}(0, 1)$, $v_0 \sim \mathcal{N}(0, 1)$ and $f(x) = \frac{\pi}{K}\sum_{i=1}^{K}\alpha_i i^{2r}\sin(i\pi x), a_i \sim \mathcal{U}(-100, 100), K=16, r=-0.5$.
 
 - `1dnlrd`: solves a non-linear Reaction-Diffusion PDE. 
-$$\begin{align}
+\begin{align}
     \frac{\partial u(t, x)}{\partial t} - \nu \frac{\partial^2u(t, x)}{\partial x^2} - \rho u(t, x)(1-u(t, x)) &= 0, \\
     u(0, x) = e^{-32(x-1/2)^2}.
-\end{align}$$
+\end{align}
 We generate $800$ trajectories by varying $\nu$ in $[1, 5]$ and $\rho$ in $[-5, 5]$.
 
 - `1dnlrdics`: solves a non-linear Reaction-Diffusion PDE (see above), but the initial condition also varies as:
