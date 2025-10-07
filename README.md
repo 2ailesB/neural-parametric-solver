@@ -5,7 +5,7 @@ Code for "Learning a neural solver for Parametric PDE to Enhance Physics-Informe
 📑 [ArXiv](https://arxiv.org/abs/2410.06820)  
 🤗 [Hugging Face](https://huggingface.co/datasets/2ailesB/neural-parametric-solver-datasets)  
 
-![](https://github.com/2ailesB/neural-parametric-solver/blob/main/img/iclr25.drawio.pdf
+![](https://github.com/2ailesB/neural-parametric-solver/blob/main/img/iclr25.drawio.pdf)
 
 
 ## Setup
