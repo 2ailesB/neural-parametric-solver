@@ -148,7 +148,6 @@ $$
 
 - `nd`: General training training procedure for our model.
 
-
 ### References
 
 [1] PDEBENCH: An Extensive Benchmark for Scientific Machine Learning, Makoto Takamoto, Timothy Praditia, Raphael Leiteritz, Dan MacKinlay, Francesco Alesiani, Dirk Pflüger, Mathias Niepert, NeurIPS 2022 - Track on Datasets and Benchmarks.
@@ -156,3 +155,12 @@ $$
 [2] Fourier Neural Operator for Parametric Partial Differential Equations, Zongyi Li, Nikola Kovachki, Kamyar Azizzadenesheli, Burigede Liu, Kaushik Bhattacharya, Andrew Stuart, Anima Anandkumar, ICLR 2021. 
 
 [3] Masked Autoencoders are PDE Learners, Anthony Zhou, Amir Barati Farimani, TMLR 20224. 
+
+
+
+### Additional code provided
+In order to help future developpement, we provide additional code for future version of the neural solver. However, this code might not be fully updated. 
+- Models: While our proposed method rely on Gradient Descent (and ablation using direct prediction of the step), we could adapt this techique to other solver. While firsts attempts in this direction did not show any improvements, we add the following models: Adam, RK4 and direct prediction of a conditioning matrix. 
+- Inner Optimizer: Using the previous model setting, one could plug the ouput in several optimizer. We provide some code for: AdaBelief, Adam, Newton, RK4. 
+- Reconstruction basis: Results in our paper use the BSpline basis (plus ablation with non linear combination), but we also provide code for Chebyshev, Fourier, Hermite, Legendre and Polynomial bases. 
+- Many other options are available in models/training and not detailed here: initialization of the parameters, layer types for the neural network, optimizer for the neural networks... and many others. 
